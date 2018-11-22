@@ -8,6 +8,13 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "target": "es5",
     "typeRoots": [
       "node_modules/@types"
@@ -15,6 +22,14 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@drmueller/ng-base-directives": [
+        "dist/drmueller/ng-base-directives"
+      ],
+      "@drmueller/ng-base-directives/*": [
+        "dist/drmueller/ng-base-directives/*"
+      ]
+    }
   }
 }
