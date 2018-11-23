@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
-import { NgBaseDirectivesComponent } from './ng-base-directives.component';
+import * as pipes from './pipes';
 
 @NgModule({
   imports: [
   ],
-  declarations: [NgBaseDirectivesComponent],
-  exports: [NgBaseDirectivesComponent]
+  declarations: [
+    pipes.SplitEnumPipe
+  ],
+  exports: [
+    pipes.SplitEnumPipe
+  ]
 })
 export class NgBaseDirectivesModule { }
