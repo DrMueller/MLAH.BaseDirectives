@@ -1,20 +1,19 @@
-name: 2.0$(rev:.r) # build numbering format
-
 resources:
 - repo: self
 queue:
-  name: Default
+  name: Hosted VS2017
   demands: npm
 
 steps:
 - task: Npm@1
-  displayName: Install
+  displayName: 'NPM Install'
   inputs:
     verbose: false
 
+  enabled: false
 
 - task: Npm@1
-  displayName: 'NG Lint'
+  displayName: 'NPM NG Lint'
   inputs:
     command: custom
 
@@ -22,30 +21,61 @@ steps:
 
     customCommand: 'run ng lint'
 
-- task: powershell@2
-  displayName: 'Update Package Version'
-  inputs:
-    targetType: filePath
-    filePath: './scripts/UpdatePackageVersion.ps1'
-    arguments: '-buildVersion $(Build.BuildNumber)'
-
-- task: powershell@2
-  displayName: 'Build and Pack'
-  inputs:
-    targetType: filePath
-    filePath: './scripts/BuildAndPack.ps1'
+  enabled: false
 
 - task: Npm@1
-  displayName: Publish
+  displayName: 'NPM NG Unit Tests'
   inputs:
     command: custom
 
-    workingDir: publish
+    verbose: false
+
+    customCommand: 'run unit-test-lib'
+
+  enabled: false
+
+- task: Npm@1
+  displayName: 'npm custom'
+  inputs:
+    command: custom
+
+    workingDir: 'projects/drmueller/ng-base-directives'
+
+    verbose: false
+
+    customCommand: 'version $(Build.BuildNumber)'
+
+
+- task: Npm@1
+  displayName: 'npm publish'
+  inputs:
+    command: publish
+
+    workingDir: 'projects/drmueller/ng-base-directives'
+
+    verbose: false
+
+    publishEndpoint: 'NPM-DrMueller'
+
+
+- powershell: ./scripts/UpdatePackageVersion.ps1
+  arguments: '-buildVersion $(Build.BuildNumber)'
+
+  displayName: 'PS Update Package Version'
+  enabled: false
+
+- powershell: ./scripts/BuildAndPack.ps1
+  displayName: 'PS Build and Pack'
+  enabled: false
+
+- task: Npm@1
+  displayName: 'npm custom'
+  inputs:
+    command: custom
 
     verbose: false
 
     customCommand: 'publish export.tgz --access public'
 
-    customEndpoint: 'NPM-DrMueller'
-
+  enabled: false
 
