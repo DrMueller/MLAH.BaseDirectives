@@ -7,8 +7,6 @@ queue:
   demands: npm
 
 steps:
-
-steps:
 - task: Npm@1
   displayName: 'npm custom'
   inputs:
