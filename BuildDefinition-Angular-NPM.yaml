@@ -27,6 +27,8 @@ steps:
 
     workingDir: 'projects/drmueller/ng-base-directives'
 
+    customCommand: '--access public'
+
     verbose: false
 
     publishEndpoint: 'NPM-DrMueller'
