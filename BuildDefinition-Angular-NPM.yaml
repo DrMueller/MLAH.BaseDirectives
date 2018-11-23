@@ -8,27 +8,14 @@ queue:
 
 steps:
 
+steps:
 - task: Npm@1
   displayName: 'npm custom'
   inputs:
     command: custom
 
-    workingDir: 'projects/drmueller/ng-base-directives'
-
     verbose: false
 
-    customCommand: 'version $(Build.BuildNumber)'
-
-
-- task: Npm@1
-  displayName: 'npm publish'
-  inputs:
-    command: publish
-
-    workingDir: 'projects/drmueller/ng-base-directives'
-
-    customCommand: '--access public'
-
-    verbose: false
+    customCommand: 'publish --access public'
 
     publishEndpoint: 'NPM-DrMueller'
