@@ -1,3 +1,5 @@
+name: 2.0$(rev:.r) # build numbering format
+
 resources:
 - repo: self
 queue:
@@ -5,34 +7,6 @@ queue:
   demands: npm
 
 steps:
-- task: Npm@1
-  displayName: 'NPM Install'
-  inputs:
-    verbose: false
-
-  enabled: false
-
-- task: Npm@1
-  displayName: 'NPM NG Lint'
-  inputs:
-    command: custom
-
-    verbose: false
-
-    customCommand: 'run ng lint'
-
-  enabled: false
-
-- task: Npm@1
-  displayName: 'NPM NG Unit Tests'
-  inputs:
-    command: custom
-
-    verbose: false
-
-    customCommand: 'run unit-test-lib'
-
-  enabled: false
 
 - task: Npm@1
   displayName: 'npm custom'
@@ -56,26 +30,3 @@ steps:
     verbose: false
 
     publishEndpoint: 'NPM-DrMueller'
-
-
-- powershell: ./scripts/UpdatePackageVersion.ps1
-  arguments: '-buildVersion $(Build.BuildNumber)'
-
-  displayName: 'PS Update Package Version'
-  enabled: false
-
-- powershell: ./scripts/BuildAndPack.ps1
-  displayName: 'PS Build and Pack'
-  enabled: false
-
-- task: Npm@1
-  displayName: 'npm custom'
-  inputs:
-    command: custom
-
-    verbose: false
-
-    customCommand: 'publish export.tgz --access public'
-
-  enabled: false
-
