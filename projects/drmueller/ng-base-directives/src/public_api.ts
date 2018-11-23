@@ -3,3 +3,4 @@
  */
 
 export * from './lib/ng-base-directives.module';
+export * from './lib/pipes';
