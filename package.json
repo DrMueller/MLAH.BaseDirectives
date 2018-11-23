@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "unit-test-lib": "ng run @drmueller/ng-base-directives:test"
+    "unit-test-lib": "ng run @drmueller/ng-base-directives:unit-test"
   },
   "private": true,
   "dependencies": {
