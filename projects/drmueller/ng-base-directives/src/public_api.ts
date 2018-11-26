@@ -3,4 +3,5 @@
  */
 
 export * from './lib/ng-base-directives.module';
-export * from './lib/pipes';
+export * from './lib/enum-splitting';
+export * from './lib/commands';
