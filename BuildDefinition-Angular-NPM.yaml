@@ -6,14 +6,69 @@ queue:
   name: Hosted VS2017
   demands: npm
 
+variables:
+  LibraryName: 'ng-base-directives'
 steps:
 - task: Npm@1
-  displayName: 'npm custom'
+  displayName: 'NPM Install'
+  inputs:
+    verbose: false
+
+
+- task: Npm@1
+  displayName: 'NPM NG Lint'
   inputs:
     command: custom
 
     verbose: false
 
+    customCommand: 'run ng lint'
+
+
+- task: Npm@1
+  displayName: 'NPM NG Unit Tests'
+  inputs:
+    command: custom
+
+    verbose: false
+
+    customCommand: 'run unit-test-lib'
+
+  enabled: false
+
+- task: Npm@1
+  displayName: 'NPM Build Prod'
+  inputs:
+    command: custom
+
+    verbose: false
+
+    customCommand: 'run build-lib-prod'
+
+
+- task: Npm@1
+  displayName: 'NPM Update Version'
+  inputs:
+    command: custom
+
+    workingDir: 'dist/drmueller/$(LibraryName)'
+
+    verbose: false
+
+    customCommand: 'version $(Build.BuildNumber)'
+
+
+- task: Npm@1
+  displayName: 'NPM Publish'
+  inputs:
+    command: custom
+
+    workingDir: 'dist/drmueller/$(LibraryName)'
+
+    verbose: false
+
     customCommand: 'publish --access public'
 
-    publishEndpoint: 'NPM-DrMueller'
+    customEndpoint: 'NPM-DrMueller'
+
+
