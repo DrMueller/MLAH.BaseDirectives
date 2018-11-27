@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatButtonModule, MatProgressSpinnerModule } from '@angular/material';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { CommandButtonDirective } from './commands/directives/command-button.directive';
 import * as enumSplitting from './enum-splitting';
@@ -20,7 +19,6 @@ import { SafeHtmlPipe } from './safe-html/pipes/safe-html.pipe';
   imports: [
     MatProgressSpinnerModule,
     CommonModule,
-    BrowserAnimationsModule,
     MatButtonModule
   ],
   entryComponents: [

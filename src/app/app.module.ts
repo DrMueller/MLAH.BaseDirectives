@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { NgBaseDirectivesModule } from '../../projects/drmueller/ng-base-directives/src/public_api';
@@ -14,7 +15,8 @@ import { MatProgressSpinnerModule } from '@angular/material';
     BrowserModule,
     NgBaseDirectivesModule,
     MatButtonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
