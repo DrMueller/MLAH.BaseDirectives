@@ -17,14 +17,16 @@ export class CommandButtonDirective implements DoCheck {
 
   @Input() public set command(command: RelayCommand) {
     this._command = command;
+    this.checkCanExecute();
   }
 
   public ngDoCheck(): void {
-    const canExecute = this._command.canExecuteCallback();
-    if (canExecute !== this._canExecute) {
-      this._canExecute = canExecute;
-      this.adjustDisabledOnElement();
-    }
+    this.checkCanExecute();
+  }
+
+  private checkCanExecute(): void {
+    this._canExecute = this._command.canExecuteCallback();
+    this.adjustDisabledOnElement();
   }
 
   private adjustDisabledOnElement() {

@@ -9,15 +9,14 @@ import { RelayCommand } from 'projects/drmueller/ng-base-directives/src/public_a
 })
 export class AppComponent {
   public showProgressSpinner: boolean;
-
-  private _canExecute = false;
+  public canExecute = false;
 
   public get command(): RelayCommand {
-    return new RelayCommand(this.doSomething, () => this._canExecute);
+    return new RelayCommand(this.doSomething, () => this.canExecute);
   }
 
   public toggleCanExecute(): void {
-    this._canExecute = !this._canExecute;
+    this.canExecute = !this.canExecute;
   }
 
   public toggleProgressSpinner(): void {
