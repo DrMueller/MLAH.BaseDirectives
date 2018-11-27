@@ -1,7 +1,9 @@
-import { Action, } from '@drmueller/language-extensions';
-import { Observable } from 'rxjs';
+import { Action, Func, } from '@drmueller/language-extensions';
 
 export class RelayCommand {
-  public constructor(public action: Action, public canExecute$: Observable<boolean>) {
+  public constructor(public action: Action, public canExecuteCallback: Func<boolean>) {
   }
+
+  // public constructor(public action: Action, public canExecute$: Observable<boolean>) {
+  // }
 }
