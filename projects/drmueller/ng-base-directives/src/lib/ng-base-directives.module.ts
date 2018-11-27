@@ -13,7 +13,6 @@ import {
 import {
     ProgressSpinnerDirective
 } from './progress-spinning/directives/progress-spinner.directive';
-import { SafeHtmlPipe } from './safe-html/pipes/safe-html.pipe';
 
 @NgModule({
   imports: [
@@ -29,7 +28,6 @@ import { SafeHtmlPipe } from './safe-html/pipes/safe-html.pipe';
     ProgressSpinnerComponent,
     ProgressSpinnerDirective,
     ProgressSpinnerButtonComponent,
-    SafeHtmlPipe,
     CommandButtonDirective
   ],
   exports: [
