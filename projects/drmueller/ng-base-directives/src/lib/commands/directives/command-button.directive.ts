@@ -31,9 +31,9 @@ export class CommandButtonDirective implements DoCheck {
     const attributes: NamedNodeMap = this.elementRef.nativeElement.attributes;
     const disabledAttribute = attributes.getNamedItem('disabled');
 
-    if (this._canExecute && !disabledAttribute) {
+    if (!this._canExecute && !disabledAttribute) {
       this.renderer.setAttribute(this.elementRef.nativeElement, 'disabled', '');
-    } else if (!this._canExecute && disabledAttribute) {
+    } else if (this._canExecute && disabledAttribute) {
       this.renderer.removeAttribute(this.elementRef.nativeElement, 'disabled');
     }
   }
