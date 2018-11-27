@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { MatButtonModule, MatProgressSpinnerModule } from '@angular/material';
 
 import { CommandButtonDirective } from './commands/directives/command-button.directive';
-import * as enumSplitting from './enum-splitting';
+import { SplitEnumPipe } from './enum-splitting/pipes/split-enum.pipe';
 import {
     ProgressSpinnerButtonComponent
 } from './progress-spinning/components/progress-spinner-button/progress-spinner-button.component';
@@ -24,14 +24,14 @@ import {
     ProgressSpinnerComponent
   ],
   declarations: [
-    enumSplitting.SplitEnumPipe,
+    SplitEnumPipe,
     ProgressSpinnerComponent,
     ProgressSpinnerDirective,
     ProgressSpinnerButtonComponent,
     CommandButtonDirective
   ],
   exports: [
-    enumSplitting.SplitEnumPipe,
+    SplitEnumPipe,
     ProgressSpinnerDirective,
     ProgressSpinnerButtonComponent,
     CommandButtonDirective

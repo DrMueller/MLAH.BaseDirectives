@@ -3,5 +3,6 @@
  */
 
 export * from './lib/ng-base-directives.module';
-export * from './lib/enum-splitting';
-export * from './lib/commands';
+export * from './lib/enum-splitting/pipes/split-enum.pipe';
+export * from './lib/commands/models/relay.command';
+export * from './lib/commands/directives/command-button.directive';
