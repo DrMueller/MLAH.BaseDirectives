@@ -1,9 +1,19 @@
-import { Action, Func, } from '@drmueller/language-extensions';
+import { Action, Func } from '@drmueller/language-extensions';
 
-export class RelayCommand {
-  public constructor(public action: Action, public canExecuteCallback: Func<boolean>) {
+import { ICommand } from './command.interface';
+
+export class RelayCommand implements ICommand {
+  public constructor(private action: Action, private canExecuteCallback: Func<boolean> | null = null) {
   }
 
-  // public constructor(public action: Action, public canExecute$: Observable<boolean>) {
-  // }
+  public get canExecute(): boolean {
+    if (!this.canExecuteCallback) {
+      return true;
+    }
+
+    return this.canExecuteCallback();
+  }
+  public execute(): void {
+    this.action();
+  }
 }

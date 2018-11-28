@@ -1,41 +1,33 @@
 import { Directive, ElementRef, HostListener, Input, Renderer2, DoCheck } from '@angular/core';
-
-import { RelayCommand } from '../models/relay.command';
+import { ICommand } from '../models/command.interface';
 
 @Directive({
   selector: '[drmCommandButton]'
 })
 export class CommandButtonDirective implements DoCheck {
-  private _canExecute: boolean;
-  private _command: RelayCommand;
+  private _command: ICommand;
 
   public constructor(private renderer: Renderer2, private elementRef: ElementRef) { }
 
   @HostListener('click') public onClick() {
-    this._command.action();
+    this._command.execute();
   }
 
-  @Input() public set command(command: RelayCommand) {
+  @Input() public set command(command: ICommand) {
     this._command = command;
-    this.checkCanExecute();
-  }
-
-  public ngDoCheck(): void {
-    this.checkCanExecute();
-  }
-
-  private checkCanExecute(): void {
-    this._canExecute = this._command.canExecuteCallback();
     this.adjustDisabledOnElement();
   }
 
+  public ngDoCheck(): void {
+    this.adjustDisabledOnElement();
+  }
   private adjustDisabledOnElement() {
     const attributes: NamedNodeMap = this.elementRef.nativeElement.attributes;
     const disabledAttribute = attributes.getNamedItem('disabled');
 
-    if (!this._canExecute && !disabledAttribute) {
+    if (!this._command.canExecute && !disabledAttribute) {
       this.renderer.setAttribute(this.elementRef.nativeElement, 'disabled', '');
-    } else if (this._canExecute && disabledAttribute) {
+    } else if (this._command.canExecute && disabledAttribute) {
       this.renderer.removeAttribute(this.elementRef.nativeElement, 'disabled');
     }
   }

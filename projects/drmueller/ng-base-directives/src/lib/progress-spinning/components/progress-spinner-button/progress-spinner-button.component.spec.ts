@@ -1,4 +1,6 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ProgressSpinnerButtonComponent } from './progress-spinner-button.component';
 
@@ -8,9 +10,11 @@ describe('ProgressSpinnerButtonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProgressSpinnerButtonComponent ]
+      declarations: [ProgressSpinnerButtonComponent],
+      schemas: [NO_ERRORS_SCHEMA],
+      imports: [NoopAnimationsModule]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
