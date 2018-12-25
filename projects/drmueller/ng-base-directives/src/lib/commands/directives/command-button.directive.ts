@@ -15,7 +15,6 @@ export class CommandButtonDirective implements DoCheck {
 
   @Input() public set command(command: ICommand) {
     this._command = command;
-    console.log('In Command');
     this.adjustDisabledOnElement();
   }
 
@@ -24,17 +23,10 @@ export class CommandButtonDirective implements DoCheck {
   }
 
   private adjustDisabledOnElement() {
-    console.log('In adjustDisabledOnElement');
     const attributes: NamedNodeMap = this.elementRef.nativeElement.attributes;
     const disabledAttribute = attributes.getNamedItem('disabled');
 
-    console.log('In adjustDisabledOnElement');
-
-    const canExecute = this._command.canExecute;
-    console.log(disabledAttribute);
-    console.log(canExecute);
-
-    if (!canExecute && !disabledAttribute) {
+    if (!this._command.canExecute && !disabledAttribute) {
       this.renderer.setAttribute(this.elementRef.nativeElement, 'disabled', '');
     } else if (this._command.canExecute && disabledAttribute) {
       this.renderer.removeAttribute(this.elementRef.nativeElement, 'disabled');
